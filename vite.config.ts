@@ -1,0 +1,13 @@
+import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [tailwindcss(), sveltekit()],
+	ssr: {
+		noExternal: ['@threlte/core', '@threlte/extras', 'three']
+	},
+	optimizeDeps: {
+		include: ['three', 'gsap', 'd3', 'lenis']
+	}
+});

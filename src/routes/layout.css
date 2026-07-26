@@ -1,0 +1,273 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Playfair Display', ui-serif, Georgia, serif;
+	--color-alpha-bg: #0a0a0c;
+	--color-alpha-surface: #111114;
+	--color-alpha-border: #242429;
+	--color-alpha-border-hover: #2e2e35;
+	--color-alpha-text: #e8e6e3;
+	--color-alpha-muted: #9a9590;
+	--color-alpha-faint: #6b6560;
+	--color-alpha-red: #980000;
+	--color-alpha-red-bright: #b82020;
+	--color-alpha-blue: #3b8beb;
+	--color-alpha-teal: #2bbfa0;
+	--color-alpha-gold: #d4a853;
+}
+
+:root {
+	--alpha-bg: #0a0a0c;
+	--alpha-surface: #111114;
+	--alpha-border: #242429;
+	--alpha-border-hover: #2e2e35;
+	--alpha-text: #e8e6e3;
+	--alpha-muted: #9a9590;
+	--alpha-faint: #6b6560;
+	--alpha-red: #980000;
+	--alpha-red-bright: #b82020;
+	--alpha-blue: #3b8beb;
+	--alpha-teal: #2bbfa0;
+	--alpha-gold: #d4a853;
+	--nav-h: 4.25rem;
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: auto;
+	background: var(--alpha-bg);
+}
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	font-family: var(--font-sans);
+	background: var(--alpha-bg);
+	color: var(--alpha-text);
+	line-height: 1.7;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	text-rendering: optimizeLegibility;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--alpha-red) 45%, transparent);
+	color: #fff;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Noise film grain overlay */
+.grain {
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 80;
+	opacity: 0.045;
+	mix-blend-mode: overlay;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.section-shell {
+	position: relative;
+	width: min(1100px, calc(100% - 2rem));
+	margin-inline: auto;
+	padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section-label {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--alpha-red);
+	margin-bottom: 0.8rem;
+}
+
+.section-title {
+	font-family: var(--font-display);
+	font-size: clamp(1.8rem, 4vw, 2.6rem);
+	font-weight: 600;
+	line-height: 1.2;
+	margin: 0 0 1rem;
+	letter-spacing: -0.02em;
+}
+
+.section-desc {
+	font-size: 1.05rem;
+	color: var(--alpha-muted);
+	max-width: 640px;
+	margin: 0 0 2.75rem;
+	line-height: 1.85;
+}
+
+.divider-line {
+	height: 1px;
+	width: min(1100px, calc(100% - 2rem));
+	margin: 0 auto;
+	background: linear-gradient(90deg, transparent, var(--alpha-border-hover), transparent);
+}
+
+.card-surface {
+	background: var(--alpha-surface);
+	border: 1px solid var(--alpha-border);
+	border-radius: 16px;
+	transition:
+		border-color 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-surface:hover {
+	border-color: var(--alpha-border-hover);
+}
+
+.btn-primary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	padding: 0.9rem 1.55rem;
+	border-radius: 999px;
+	font-size: 0.92rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: #fff;
+	background: linear-gradient(135deg, #980000 0%, #b82020 55%, #d43a3a 100%);
+	box-shadow:
+		0 0 0 1px rgba(184, 32, 32, 0.35),
+		0 10px 40px -12px rgba(152, 0, 0, 0.65),
+		inset 0 1px 0 rgba(255, 255, 255, 0.15);
+	transition:
+		transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+		filter 0.5s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-primary::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.18) 50%, transparent 70%);
+	transform: translateX(-120%);
+	transition: transform 0.7s var(--ease-out-expo);
+}
+
+.btn-primary:hover {
+	transform: translateY(-2px) scale(1.01);
+	filter: brightness(1.06);
+	box-shadow:
+		0 0 0 1px rgba(184, 32, 32, 0.5),
+		0 16px 48px -10px rgba(152, 0, 0, 0.75),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover::after {
+	transform: translateX(120%);
+}
+
+.btn-primary:active {
+	transform: translateY(0) scale(0.99);
+}
+
+.btn-ghost {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1.35rem;
+	border-radius: 999px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--alpha-text);
+	border: 1px solid var(--alpha-border);
+	background: rgba(17, 17, 20, 0.55);
+	backdrop-filter: blur(12px);
+	transition:
+		border-color 0.3s ease,
+		background 0.3s ease,
+		transform 0.35s var(--ease-out-expo);
+}
+
+.btn-ghost:hover {
+	border-color: color-mix(in srgb, var(--alpha-blue) 45%, var(--alpha-border));
+	background: rgba(59, 139, 235, 0.08);
+	transform: translateY(-1px);
+}
+
+/* Reveal primitives — GSAP owns timing; CSS is fallback only */
+.reveal {
+	opacity: 0;
+	transform: translate3d(0, 36px, 0);
+	will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: none;
+	transition:
+		opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 1.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* Focus rings */
+:focus-visible {
+	outline: 2px solid var(--alpha-blue);
+	outline-offset: 3px;
+}
