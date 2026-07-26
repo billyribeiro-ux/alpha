@@ -195,10 +195,15 @@
 
 	h1 em {
 		font-style: italic;
-		background: linear-gradient(135deg, #980000, #e04848 50%, #b82020);
+	}
+
+	h1 em,
+	h1 em :global(.split-word) {
+		background: linear-gradient(135deg, #ff4d4d 0%, #e03232 50%, #ff7373 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
+		display: inline-block;
 	}
 
 	.sub {
