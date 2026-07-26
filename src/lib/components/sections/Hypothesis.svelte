@@ -32,11 +32,9 @@
 			</div>
 			<p class="hyp-body">
 				Day traders who learn to achieve and maintain an
-				<strong
-					>alpha brainwave state ({study.alphaBand.minHz}–{study.alphaBand.maxHz} Hz)</strong
-				>
-				will show reduced emotional reactivity, improved technical execution, shorter learning
-				curves, and greater consistency — <em>compared to their own pre-study baseline</em>.
+				<strong>alpha brainwave state ({study.alphaBand.minHz}–{study.alphaBand.maxHz} Hz)</strong>
+				will show reduced emotional reactivity, improved technical execution, shorter learning curves,
+				and greater consistency — <em>compared to their own pre-study baseline</em>.
 			</p>
 			<ul class="hyp-metrics">
 				<li>Within-subject design — you are your own control</li>

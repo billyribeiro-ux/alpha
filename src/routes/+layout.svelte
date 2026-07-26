@@ -9,6 +9,7 @@
 	import { initStudyReveals } from '$lib/motion/reveals';
 	import Nav from '$lib/components/ui/Nav.svelte';
 	import ApplyModal from '$lib/components/ui/ApplyModal.svelte';
+	import CustomCursor from '$lib/components/ui/CustomCursor.svelte';
 
 	let { children } = $props();
 
@@ -86,6 +87,7 @@
 <Nav />
 {@render children()}
 <ApplyModal />
+<CustomCursor />
 
 <style>
 	.skip {

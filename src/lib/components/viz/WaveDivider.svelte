@@ -17,6 +17,7 @@
 		let raf = 0;
 		const canvas = document.createElement('canvas');
 		canvas.setAttribute('aria-hidden', 'true');
+		// eslint-disable-next-line svelte/no-dom-manipulating
 		host.appendChild(canvas);
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;

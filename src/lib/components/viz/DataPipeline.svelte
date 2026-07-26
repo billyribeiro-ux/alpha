@@ -5,9 +5,8 @@
 	 */
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { ensureGsap, ScrollTrigger } from '$lib/motion/gsap-setup';
+	import { ensureGsap } from '$lib/motion/gsap-setup';
 	import { ui } from '$lib/state/ui.svelte';
-	import { tempo } from '$lib/motion/tempo';
 	import HeadCircuitIcon from 'phosphor-svelte/lib/HeadCircuitIcon';
 	import FileCsvIcon from 'phosphor-svelte/lib/FileCsvIcon';
 	import ChartLineIcon from 'phosphor-svelte/lib/ChartLineIcon';
@@ -50,23 +49,21 @@
 			gsap.set(stepsEl, { opacity: 0, y: 20 });
 			gsap.set(connectors, { scaleX: 0, transformOrigin: 'left center' });
 
-			ScrollTrigger.create({
-				trigger: root,
-				start: 'top 75%',
-				once: true,
-				onEnter: () => {
-					const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-					stepsEl.forEach((el, i) => {
-						tl.to(el, { opacity: 1, y: 0, duration: tempo.revealDuration * 0.75 }, i * 0.28);
-						if (i < connectors.length) {
-							tl.to(
-								connectors[i],
-								{ scaleX: 1, duration: 0.9, ease: 'power1.inOut' },
-								i * 0.28 + 0.35
-							);
-						}
-					});
-					tl.add(() => root?.classList.add('is-drawn'));
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: root,
+					start: 'top 85%',
+					end: 'bottom 40%',
+					scrub: 1, // 1 second smoothing
+					onEnter: () => root?.classList.add('is-drawn')
+				},
+				defaults: { ease: 'none' } // use none for scrub
+			});
+
+			stepsEl.forEach((el, i) => {
+				tl.to(el, { opacity: 1, y: 0, duration: 1 }, i * 1);
+				if (i < connectors.length) {
+					tl.to(connectors[i], { scaleX: 1, duration: 1.5 }, i * 1 + 0.5);
 				}
 			});
 		}, root);

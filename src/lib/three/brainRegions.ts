@@ -150,9 +150,24 @@ export const BAND_META: Record<
 	BandId,
 	{ label: string; hz: string; color: string; protocol: string }
 > = {
-	delta: { label: 'Δ Delta', hz: '0.5–4 Hz', color: '#6b6560', protocol: 'Deep rest (off-session)' },
-	theta: { label: 'Θ Theta', hz: '4–8 Hz', color: '#2bbfa0', protocol: 'Meditation entry · memory' },
-	alpha: { label: 'α Alpha', hz: '8–12 Hz', color: '#3b8beb', protocol: 'CORE target · calm focus' },
+	delta: {
+		label: 'Δ Delta',
+		hz: '0.5–4 Hz',
+		color: '#6b6560',
+		protocol: 'Deep rest (off-session)'
+	},
+	theta: {
+		label: 'Θ Theta',
+		hz: '4–8 Hz',
+		color: '#2bbfa0',
+		protocol: 'Meditation entry · memory'
+	},
+	alpha: {
+		label: 'α Alpha',
+		hz: '8–12 Hz',
+		color: '#3b8beb',
+		protocol: 'CORE target · calm focus'
+	},
 	beta: { label: 'β Beta', hz: '12–30 Hz', color: '#b82020', protocol: 'STRENGTH · executive' },
 	gamma: { label: 'γ Gamma', hz: '30–80 Hz', color: '#d4a853', protocol: 'Binding · peak insight' }
 };

@@ -86,13 +86,7 @@
 
 {#if ui.applyOpen}
 	<button type="button" class="backdrop" aria-label="Close dialog" onclick={close}></button>
-	<div
-		class="modal"
-		role="dialog"
-		aria-modal="true"
-		aria-labelledby="apply-title"
-		tabindex="-1"
-	>
+	<div class="modal" role="dialog" aria-modal="true" aria-labelledby="apply-title" tabindex="-1">
 		<button class="close" type="button" aria-label="Close application form" onclick={close}>
 			<XIcon size={20} weight="bold" />
 		</button>
@@ -156,8 +150,10 @@
 				</label>
 				<label class="full">
 					<span>Anything we should know?</span>
-					<textarea bind:value={notes} rows="3" placeholder="Goals, schedule constraints, questions…"
-					></textarea>
+					<textarea
+						bind:value={notes}
+						rows="3"
+						placeholder="Goals, schedule constraints, questions…"></textarea>
 				</label>
 				<label class="consent">
 					<input type="checkbox" bind:checked={consent} />

@@ -56,7 +56,7 @@
 
 			const n = 160;
 			const series = bands.map(() => new Array<number>(n).fill(0));
-			const paths = bands.map((b, i) =>
+			const paths = bands.map((b) =>
 				g
 					.append('path')
 					.attr('fill', 'none')
@@ -82,8 +82,16 @@
 				.attr('x2', '0%')
 				.attr('y1', '0%')
 				.attr('y2', '100%');
-			alphaGrad.append('stop').attr('offset', '0%').attr('stop-color', '#3b8beb').attr('stop-opacity', 0.35);
-			alphaGrad.append('stop').attr('offset', '100%').attr('stop-color', '#3b8beb').attr('stop-opacity', 0);
+			alphaGrad
+				.append('stop')
+				.attr('offset', '0%')
+				.attr('stop-color', '#3b8beb')
+				.attr('stop-opacity', 0.35);
+			alphaGrad
+				.append('stop')
+				.attr('offset', '100%')
+				.attr('stop-color', '#3b8beb')
+				.attr('stop-opacity', 0);
 
 			bands.forEach((b, i) => {
 				const row = legend.append('g').attr('transform', `translate(${i * 118}, 0)`);
@@ -176,6 +184,7 @@
 			disposed = true;
 			cancelAnimationFrame(raf);
 			cleanupResize?.();
+			// eslint-disable-next-line svelte/no-dom-manipulating
 			if (host) host.innerHTML = '';
 		};
 	});

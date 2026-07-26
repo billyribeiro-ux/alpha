@@ -54,9 +54,7 @@
 		void (async () => {
 			try {
 				const THREE = await import('three');
-				const { RoomEnvironment } = await import(
-					'three/addons/environments/RoomEnvironment.js'
-				);
+				const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
 				if (disposed || !canvasEl) return;
 
 				status = 'Building hollow cortex…';
@@ -239,7 +237,9 @@
 				const netGroup = new THREE.Group();
 				root.add(netGroup);
 
+				// eslint-disable-next-line
 				const nodeMeshes = new Map<string, import('three').Mesh>();
+				// eslint-disable-next-line
 				const nodeGroups = new Map<string, import('three').Group>();
 				const pickables: import('three').Object3D[] = [];
 
@@ -627,9 +627,17 @@
 					}
 
 					if (!ui.reducedMotion && !dragging) {
-						orbit.yaw += 0.001;
-						root.rotation.y = orbit.yaw;
-						root.rotation.x = orbit.pitch;
+						// Parallax scroll linkage
+						const scrollInfluenceYaw = ui.scrollProgress * 2.5;
+						const scrollInfluencePitch = ui.scrollProgress * 0.4;
+						orbit.yaw += 0.001; // Keep slight idle
+
+						root.rotation.y = orbit.yaw + scrollInfluenceYaw;
+						root.rotation.x = orbit.pitch - scrollInfluencePitch;
+
+						// Intense glow when scrolled down
+						const glowBoost = ui.scrollProgress * 1.5;
+						shellMat.uniforms.uAlpha.value = Math.min(1.0, localBands.alpha / 100 + glowBoost);
 					}
 
 					if (!dragging) {
@@ -733,7 +741,9 @@
 		{#if status}
 			<div class="status">{status}</div>
 		{/if}
-		<p class="hint">Drag to orbit · Scroll to zoom · Click a node · Watch waves navigate the shell</p>
+		<p class="hint">
+			Drag to orbit · Scroll to zoom · Click a node · Watch waves navigate the shell
+		</p>
 	</div>
 
 	<aside class="panel left">
@@ -769,8 +779,8 @@
 			{#if mode === 'baseline'}
 				Eyes-open / eyes-closed snapshot. Establish individual α peak before intervention.
 			{:else if mode === 'core'}
-				Pre-market CORE ALPHA: binaural session targeting {ALPHA_HZ.min}–{ALPHA_HZ.max} Hz calm
-				focus before the open.
+				Pre-market CORE ALPHA: binaural session targeting {ALPHA_HZ.min}–{ALPHA_HZ.max} Hz calm focus
+				before the open.
 			{:else}
 				Live session: Muse on, Mind Monitor recording — catch α→β transitions at decision points.
 			{/if}
@@ -834,7 +844,13 @@
 		pointer-events: none;
 		background:
 			radial-gradient(ellipse 55% 50% at 50% 42%, transparent 15%, rgba(7, 7, 8, 0.4) 100%),
-			linear-gradient(180deg, rgba(7, 7, 8, 0.2) 0%, transparent 18%, transparent 58%, rgba(7, 7, 8, 0.9) 100%);
+			linear-gradient(
+				180deg,
+				rgba(7, 7, 8, 0.2) 0%,
+				transparent 18%,
+				transparent 58%,
+				rgba(7, 7, 8, 0.9) 100%
+			);
 	}
 
 	.status,

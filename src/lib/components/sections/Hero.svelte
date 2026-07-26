@@ -9,6 +9,7 @@
 	import { ui } from '$lib/state/ui.svelte';
 	import { ensureGsap } from '$lib/motion/gsap-setup';
 	import { magnetic } from '$lib/actions/magnetic';
+	import { splitText } from '$lib/actions/split-text';
 	import { scrollToId } from '$lib/motion/smooth-scroll';
 	import NeuralScene from '$lib/components/viz/NeuralScene.svelte';
 	import NeuroTradeHud from '$lib/components/viz/NeuroTradeHud.svelte';
@@ -20,20 +21,50 @@
 		if (!root || ui.reducedMotion) return;
 		const gsap = ensureGsap();
 		const ctx = gsap.context(() => {
-			gsap.from('.dock > *', {
-				y: 28,
+			const tl = gsap.timeline({ delay: 0.2 });
+
+			// Dock entrance
+			tl.from('.dock', {
+				y: 40,
 				opacity: 0,
-				stagger: 0.07,
-				duration: 0.7,
-				ease: 'power3.out',
-				delay: 0.35
+				duration: 1,
+				ease: 'power3.out'
 			});
+
+			// Split text reveal on the title
+			tl.from(
+				'.split-word',
+				{
+					yPercent: 100,
+					opacity: 0,
+					duration: 0.8,
+					stagger: 0.05,
+					ease: 'power4.out'
+				},
+				'-=0.6'
+			);
+
+			// Stagger rest of dock items
+			tl.from(
+				'.dock > *:not(.brand), .kicker-row',
+				{
+					y: 20,
+					opacity: 0,
+					stagger: 0.05,
+					duration: 0.7,
+					ease: 'power2.out'
+				},
+				'-=0.5'
+			);
 		}, root);
 		return () => ctx.revert();
 	});
 </script>
 
 <section id="hero" class="hero" bind:this={root} aria-labelledby="hero-title">
+	<!-- Ambient Glow Spotlights -->
+	<div class="bg-spot-red" style="top: -100px; left: 50%; transform: translateX(-50%);"></div>
+
 	<!-- FULL VIEWPORT: brain only -->
 	<div class="stage-wrap">
 		<NeuralScene />
@@ -51,8 +82,11 @@
 				decoding="async"
 			/>
 			<div>
-				<p class="kicker">{study.brand} research</p>
-				<h1 id="hero-title">Project <em>ALPHA</em></h1>
+				<div class="kicker-row">
+					<p class="kicker">{study.brand} research</p>
+					<span class="live-badge"><span class="dot"></span> Enrolling</span>
+				</div>
+				<h1 id="hero-title" use:splitText>Project <em>ALPHA</em></h1>
 			</div>
 		</div>
 
@@ -132,6 +166,13 @@
 		border-radius: 9px;
 		object-fit: cover;
 		background: #000;
+	}
+
+	.kicker-row {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-bottom: 0.2rem;
 	}
 
 	.kicker {

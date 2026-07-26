@@ -9,7 +9,7 @@ export const ALPHA_HZ = { min: 8, max: 12, center: 10 } as const;
 
 /** Classic ECG QRS-like spike train (normalized −1..1). */
 export function ecgSample(t: number, phase = 0): number {
-	const x = ((t * 1.15 + phase) % 1 + 1) % 1;
+	const x = (((t * 1.15 + phase) % 1) + 1) % 1;
 	// Baseline wander
 	let y = Math.sin(t * 0.7 + phase) * 0.04;
 	// P wave

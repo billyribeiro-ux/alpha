@@ -51,10 +51,7 @@
 				.attr('width', '100%')
 				.attr('height', height)
 				.attr('role', 'img')
-				.attr(
-					'aria-label',
-					'Illustrative EEG, ECG, and trading path monitor for Project ALPHA'
-				);
+				.attr('aria-label', 'Illustrative EEG, ECG, and trading path monitor for Project ALPHA');
 
 			const defs = svg.append('defs');
 			const glow = defs
@@ -134,8 +131,16 @@
 				.attr('y1', '0%')
 				.attr('x2', '0%')
 				.attr('y2', '100%');
-			grad.append('stop').attr('offset', '0%').attr('stop-color', '#d4a853').attr('stop-opacity', 0.45);
-			grad.append('stop').attr('offset', '100%').attr('stop-color', '#d4a853').attr('stop-opacity', 0);
+			grad
+				.append('stop')
+				.attr('offset', '0%')
+				.attr('stop-color', '#d4a853')
+				.attr('stop-opacity', 0.45);
+			grad
+				.append('stop')
+				.attr('offset', '100%')
+				.attr('stop-color', '#d4a853')
+				.attr('stop-opacity', 0);
 
 			// Legend chips
 			const legend = [
@@ -317,10 +322,8 @@
 				const ecgMid = margin.top + innerH * 0.78;
 				const amp = innerH * 0.09;
 				priceBuf[i] = priceSample(t, 0) * amp + priceMid;
-				alphaBuf[i] =
-					eegBandSample(t, { freqHz: 3.5, amp: 0.65, phase: 0.2 }) * amp + eegMid;
-				betaBuf[i] =
-					eegBandSample(t, { freqHz: 7, amp: 0.35, phase: 1.1 }) * amp + eegMid + 8;
+				alphaBuf[i] = eegBandSample(t, { freqHz: 3.5, amp: 0.65, phase: 0.2 }) * amp + eegMid;
+				betaBuf[i] = eegBandSample(t, { freqHz: 7, amp: 0.35, phase: 1.1 }) * amp + eegMid + 8;
 				ecgBuf[i] = ecgSample(t * 0.55) * amp + ecgMid;
 			}
 			sample(performance.now());
@@ -333,6 +336,7 @@
 			disposed = true;
 			window.clearInterval(interval);
 			cleanupResize?.();
+			// eslint-disable-next-line svelte/no-dom-manipulating
 			if (host) host.innerHTML = '';
 		};
 	});

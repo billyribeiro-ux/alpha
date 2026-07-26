@@ -10,8 +10,8 @@
 		<p class="section-label">Daily protocol</p>
 		<h2 id="pillars-title" class="section-title">The three pillars</h2>
 		<p class="section-desc">
-			Not three apps to open randomly — one daily stack. Miss the stack and the research loses a
-			day of usable data.
+			Not three apps to open randomly — one daily stack. Miss the stack and the research loses a day
+			of usable data.
 		</p>
 	</div>
 

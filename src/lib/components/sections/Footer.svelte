@@ -28,7 +28,8 @@
 		<p class="brand">{study.name} Neurofeedback Research Study</p>
 		<p class="meta">{study.org} × {study.investigator.name}</p>
 		<p class="copy">
-			© {new Date().getFullYear()} {study.org}. For informational purposes. Not investment advice.
+			© {new Date().getFullYear()}
+			{study.org}. For informational purposes. Not investment advice.
 		</p>
 	</div>
 </footer>

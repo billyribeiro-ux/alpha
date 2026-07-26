@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve */
 	import { navLinks, study } from '$lib/data/content';
 	import { assets } from '$lib/data/assets';
 	import { ui } from '$lib/state/ui.svelte';

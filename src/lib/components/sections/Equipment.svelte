@@ -26,8 +26,8 @@
 		<p class="section-label">Enrollment kit</p>
 		<h2 id="equipment-title" class="section-title">What you’ll need before Day −7</h2>
 		<p class="section-desc">
-			Preloading only starts when gear is ready. Everything below stays yours after the study —
-			this is not a rental lab.
+			Preloading only starts when gear is ready. Everything below stays yours after the study — this
+			is not a rental lab.
 		</p>
 	</div>
 

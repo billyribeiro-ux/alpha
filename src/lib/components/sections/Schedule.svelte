@@ -50,8 +50,8 @@
 		<p class="section-label">A real study day</p>
 		<h2 id="schedule-title" class="section-title">The daily program</h2>
 		<p class="section-desc">
-			Added load ≈ {study.dailyCommitment} on top of the trading you already do. This is a
-			session checklist — not a motivational loop.
+			Added load ≈ {study.dailyCommitment} on top of the trading you already do. This is a session checklist
+			— not a motivational loop.
 		</p>
 	</div>
 
@@ -63,7 +63,7 @@
 
 	<div class="grid">
 		{#each schedule as block (block.title)}
-			<article class="block card-surface" style:--accent={block.accent}>
+			<article class="card-surface block" style:--accent={block.accent}>
 				<p class="time-label">
 					<ClockIcon size={13} weight="bold" />
 					{block.timeLabel}

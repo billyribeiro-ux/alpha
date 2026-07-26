@@ -21,8 +21,8 @@
 		<p class="section-label">Study conditions</p>
 		<h2 id="notes-title" class="section-title">Things to know before you enroll interest</h2>
 		<p class="section-desc">
-			These are the real constraints of a human-subjects style trading protocol — not marketing
-			fine print.
+			These are the real constraints of a human-subjects style trading protocol — not marketing fine
+			print.
 		</p>
 	</div>
 
@@ -41,8 +41,8 @@
 	</div>
 
 	<p class="compliance reveal">
-		Compliance target: <strong>{study.compliance}</strong>. Struggling beats ghosting — the PI
-		needs honest participation, not perfect streaks.
+		Compliance target: <strong>{study.compliance}</strong>. Struggling beats ghosting — the PI needs
+		honest participation, not perfect streaks.
 	</p>
 </section>
 

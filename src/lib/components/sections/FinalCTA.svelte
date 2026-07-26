@@ -24,9 +24,9 @@
 		<p class="section-label">Interest form — not acceptance</p>
 		<h2 id="cta-title" class="section-title">Train the brain that places the trade</h2>
 		<p class="section-desc">
-			{study.participants} seats. {study.days} days. Muse EEG + CORE ALPHA + one-contract live
-			sessions under {study.investigator.name}. If you can run the stack and accept financial risk,
-			register interest — enrollment is separate.
+			{study.participants} seats. {study.days} days. Muse EEG + CORE ALPHA + one-contract live sessions
+			under {study.investigator.name}. If you can run the stack and accept financial risk, register
+			interest — enrollment is separate.
 		</p>
 
 		<ul class="perks">

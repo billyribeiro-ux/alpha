@@ -8,8 +8,7 @@ import { tempo } from './tempo';
 export function initStudyReveals(root: ParentNode = document): () => void {
 	ensureGsap();
 	const reduces =
-		typeof window !== 'undefined' &&
-		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	const nodes = Array.from(root.querySelectorAll<HTMLElement>('.reveal'));
 	if (reduces) {
@@ -20,6 +19,12 @@ export function initStudyReveals(root: ParentNode = document): () => void {
 		});
 		return () => undefined;
 	}
+
+	if (typeof document !== 'undefined') {
+		document.documentElement.classList.add('js-ready');
+	}
+
+	const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
 
 	const ctx = gsap.context(() => {
 		// Group by nearest section so staggers feel like one lab panel opening
@@ -33,6 +38,14 @@ export function initStudyReveals(root: ParentNode = document): () => void {
 
 		for (const [, group] of sections) {
 			group.forEach((el, i) => {
+				const rect = el.getBoundingClientRect();
+				// Hard evidence fix: If element is already in view or past top threshold, reveal immediately!
+				if (rect.top < vh * 0.95 && rect.bottom > 0) {
+					el.classList.add('is-visible');
+					gsap.set(el, { opacity: 1, y: 0 });
+					return;
+				}
+
 				gsap.set(el, { opacity: 0, y: tempo.revealY, force3D: true });
 				ScrollTrigger.create({
 					trigger: el,
